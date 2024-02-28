@@ -1,0 +1,58 @@
+ [
+    {
+      "id": 1,
+      "tenantId": "000000",
+      "postCode": "ceo",
+      "postName": "董事长",
+      "postSort": 1,
+      "status": "0",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": null,
+      "updateTime": null,
+      "remark": ""
+    },
+    {
+      "id": 2,
+      "tenantId": "000000",
+      "postCode": "se",
+      "postName": "项目经理",
+      "postSort": 2,
+      "status": "0",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": null,
+      "updateTime": null,
+      "remark": ""
+    },
+    {
+      "id": 3,
+      "tenantId": "000000",
+      "postCode": "hr",
+      "postName": "人力资源",
+      "postSort": 3,
+      "status": "0",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": null,
+      "updateTime": null,
+      "remark": ""
+    },
+    {
+      "id": 4,
+      "tenantId": "000000",
+      "postCode": "user",
+      "postName": "普通员工",
+      "postSort": 4,
+      "status": "0",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": null,
+      "updateTime": null,
+      "remark": ""
+    }
+  ]

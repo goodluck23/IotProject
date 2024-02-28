@@ -1,0 +1,22 @@
+ [
+    {
+      "id": 1665641342438514690,
+      "tenantId": "000000",
+      "title": "代码生成",
+      "businessType": 6,
+      "method": "org.dromara.generator.controller.GenController.importTableSave()",
+      "request_method": "POST",
+      "operatorType": 1,
+      "operName": "admin",
+      "deptName": "",
+      "operUrl": "/tool/gen/importTable",
+      "operIp": "127.0.0.1",
+      "operLocation": "内网IP",
+      "operParam": "\"sys_role_dept,sys_role_menu,sysConfig,sysDictData,sysDictType,sysLogininfor,sysNotice,sys_operLog,sys_oss,sys_ossConfig\"",
+      "json_result": "{\"code\":200,\"msg\":\"操作成功\",\"data\":null}",
+      "status": 0,
+      "error_msg": "",
+
+      "costTime": 199
+    }
+  ]

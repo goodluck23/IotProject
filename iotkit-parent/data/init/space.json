@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "homeId": 1,
+    "name": "123"
+  },
+  {
+    "id": 2,
+    "homeId": 1,
+    "name": "123"
+  },
+  {
+    "id": 3,
+    "homeId": 1,
+    "name": "客厅"
+  },
+  {
+    "id": 4,
+    "homeId": 1,
+    "name": "卧室"
+  },
+  {
+    "id": 5,
+    "homeId": 1,
+    "name": "客厅"
+  },
+  {
+    "id": 6,
+    "homeId": 1,
+    "name": "阳台"
+  },
+  {
+    "id": 7,
+    "homeId": 1,
+    "name": "厨房"
+  },
+  {
+    "id": 8,
+    "homeId": 1,
+    "name": "卧室"
+  },
+  {
+    "id": 9,
+    "homeId": 1,
+    "name": "客厅"
+  }
+]

@@ -1,0 +1,38 @@
+ [
+    {
+      "id": 1,
+      "tenantId": "000000",
+      "roleName": "超级管理员",
+      "roleKey": "superadmin",
+      "roleSort": 1,
+      "data_scope": "1",
+      "menuCheck_strictly": 1,
+      "deptCheck_strictly": 1,
+      "status": "0",
+      "delFlag": "0",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": null,
+      "updateTime": null,
+      "remark": "超级管理员"
+    },
+    {
+      "id": 2,
+      "tenantId": "000000",
+      "roleName": "普通角色",
+      "roleKey": "common",
+      "roleSort": 2,
+      "data_scope": "2",
+      "menuCheck_strictly": 1,
+      "deptCheck_strictly": 1,
+      "status": "0",
+      "delFlag": "0",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": null,
+      "updateTime": null,
+      "remark": "普通角色"
+    }
+  ]

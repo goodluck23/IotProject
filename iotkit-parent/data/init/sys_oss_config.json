@@ -1,0 +1,112 @@
+ [
+   {
+     "id": 1,
+     "tenantId": "000000",
+     "configKey": "minio",
+     "accessKey": "admin",
+     "secretKey": "iita@123",
+     "bucketName": "iotkit",
+     "prefix": "",
+     "endpoint": "159.75.222.119:9000",
+     "domain": "",
+     "is_https": "N",
+     "region": "",
+     "accessPolicy": "1",
+     "status": "0",
+     "ext1": "",
+     "createDept": 103,
+     "createBy": 1,
+
+     "updateBy": 1,
+
+     "remark": null
+   },
+    {
+      "id": 2,
+      "tenantId": "000000",
+      "configKey": "qiniu",
+      "accessKey": "XXXXXXXXXXXXXXX",
+      "secretKey": "XXXXXXXXXXXXXXX",
+      "bucketName": "ruoyi",
+      "prefix": "",
+      "endpoint": "s3-cn-north-1.qiniucs.com",
+      "domain": "",
+      "is_https": "N",
+      "region": "",
+      "accessPolicy": "1",
+      "status": "1",
+      "ext1": "",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": 1,
+
+      "remark": null
+    },
+    {
+      "id": 3,
+      "tenantId": "000000",
+      "configKey": "aliyun",
+      "accessKey": "XXXXXXXXXXXXXXX",
+      "secretKey": "XXXXXXXXXXXXXXX",
+      "bucketName": "ruoyi",
+      "prefix": "",
+      "endpoint": "oss-cn-beijing.aliyuncs.com",
+      "domain": "",
+      "is_https": "N",
+      "region": "",
+      "accessPolicy": "1",
+      "status": "1",
+      "ext1": "",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": 1,
+
+      "remark": null
+    },
+    {
+      "id": 4,
+      "tenantId": "000000",
+      "configKey": "qcloud",
+      "accessKey": "XXXXXXXXXXXXXXX",
+      "secretKey": "XXXXXXXXXXXXXXX",
+      "bucketName": "ruoyi-1250000000",
+      "prefix": "",
+      "endpoint": "cos.ap-beijing.myqcloud.com",
+      "domain": "",
+      "is_https": "N",
+      "region": "ap-beijing",
+      "accessPolicy": "1",
+      "status": "1",
+      "ext1": "",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": 1,
+
+      "remark": null
+    },
+    {
+      "id": 5,
+      "tenantId": "000000",
+      "configKey": "image",
+      "accessKey": "ruoyi",
+      "secretKey": "ruoyi123",
+      "bucketName": "ruoyi",
+      "prefix": "image",
+      "endpoint": "127.0.0.1:9000",
+      "domain": "",
+      "is_https": "N",
+      "region": "",
+      "accessPolicy": "1",
+      "status": "1",
+      "ext1": "",
+      "createDept": 103,
+      "createBy": 1,
+
+      "updateBy": 1,
+
+      "remark": null
+    }
+  ]

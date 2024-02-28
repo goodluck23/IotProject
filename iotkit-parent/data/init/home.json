@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "我的家庭",
+    "address": "",
+    "userId": 1,
+    "spaceNum": 0,
+    "deviceNum": 0,
+    "current": true
+  },
+  {
+    "id": 2,
+    "name": "我的家",
+    "userId": 3,
+    "current": true
+  },
+  {
+    "id": 3,
+    "name": "我深圳的家",
+    "address": "广东省深圳市南山区西丽镇",
+    "userId": 1,
+    "current": true
+  },
+  {
+    "id":4,
+    "name": "我深圳的家",
+    "address": "广东省深圳市南山区西丽镇",
+    "userId": 1
+  },
+  {
+    "id": 5,
+    "name": "我深圳的家",
+    "address": "广东省深圳市南山区西丽镇",
+    "userId": 1
+  },
+  {
+    "id": 6,
+    "name": "我深圳的家",
+    "address": "广东省深圳市南山区西丽镇",
+    "userId": 1
+  },
+  {
+    "id": 7,
+    "name": "myhome",
+    "address": "shengzhen nanshan",
+    "userId": 1
+  },
+  {
+    "id": 8,
+    "name": "myhome",
+    "address": "shengzhen nanshan",
+    "userId": 1
+  }
+]
