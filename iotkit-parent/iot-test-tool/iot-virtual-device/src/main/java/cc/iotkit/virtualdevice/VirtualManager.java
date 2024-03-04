@@ -59,8 +59,8 @@ public class VirtualManager {
     private MqProducer<ThingModelMessage> producer;
 
     public VirtualManager(){
-//        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-//        executorService.schedule(this::init, 8, TimeUnit.SECONDS);
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.schedule(this::init, 8, TimeUnit.SECONDS);
     }
 
     public void init() {
@@ -130,6 +130,12 @@ public class VirtualManager {
                 .build();
         try {
             IScriptEngine scriptEngine = virtualScripts.get(virtualDevice.getId());
+            if ( null == scriptEngine ) {
+                //添加新的脚本对象
+                scriptEngine = ScriptEngineFactory.getScriptEngine("js");
+                scriptEngine.setScript(virtualDevice.getScript());
+                virtualScripts.put(virtualDevice.getId(), scriptEngine);
+            }
             for (String deviceId : devices) {
                 DeviceInfo device = deviceInfoData.findByDeviceId(deviceId);
                 processReport(scriptEngine.invokeMethod(new TypeReference<>() {

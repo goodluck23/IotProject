@@ -7,7 +7,7 @@
 <p align="center"><img  src="https://img.shields.io/badge/JDK-11+-important.svg">  <img  src="https://img.shields.io/badge/Redis-5.0-important.svg"> <img  src="https://img.shields.io/badge/SpringBoot-2.6.2-blue.svg"> <img  src="https://img.shields.io/badge/Elasticsearch-7.15.2-red.svg">  <img  src="https://img.shields.io/badge/Satoken-1.30.0-yellow.svg"> 
 </p>
 <p align="center"><img  src="https://img.shields.io/badge/License-Apache2.0-lightgrey.svg"> 
-<img  src="https://img.shields.io/badge/Copyright-铱塔智联/openiita-60569f.svg"> <img  src="https://img.shields.io/badge/v0.4.5-60569f.svg">
+<img  src="https://img.shields.io/badge/Copyright-铱塔智联/openiita-60569f.svg"> <img  src="https://img.shields.io/badge/v0.5.2-60569f.svg">
 <img  src="https://img.shields.io/badge/物联网平台-f44e91.svg">
 </p>
 
@@ -15,7 +15,7 @@
 此仓库为铱塔智联(openiita)物联网平台开源项目。
 铱塔智联开源平台是一个开源的物联网基础开发平台，提供了物联网及相关业务开发的常见基础功能, 能帮助你快速搭建自己的物联网相关业务平台。
 
-系统包含了品类、物模型、消息转换、通讯组件（mqtt/EMQX通讯组件、小度音箱接入组件、onenet Studio接入组件）、modbus透传接入、云端低代码设备开发、设备管理、设备分组、规则引擎、第三方平台接入、数据流转（http/mqtt/kafka）、数据可视化、报警中心等模块和智能家居APP（小程序）。
+系统包含了品类、物模型、消息转换、插件管理（mqtt插件、EMQX插件、http插件、tcp插件、modbus插件等）、设备管理、设备分组、规则引擎、第三方平台接入、数据流转（http/mqtt/kafka）、数据可视化、告警中心等模块。
 
 #### 低配服务器万级设备接入能力
 
@@ -55,7 +55,7 @@ Vertx event-bus（内置）、RocketMQ，通过扩展模块可接入其它任意
 
 [![OPENIITA/iita-iot-web-admin](https://gitee.com/open-iita/iita-iot-web-admin/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/open-iita/iita-iot-web-admin)
 
- **演示地址：** [点击访问](http://159.75.222.119:16808)
+ **演示地址：** [点击访问](http://117.72.13.229)
 
 
 **系统截图**
@@ -94,17 +94,15 @@ Vertx event-bus（内置）、RocketMQ，通过扩展模块可接入其它任意
 
 2、application.xml中打开rocketmq配置
 
+#### Docker运行
+docker pull iotkits/iot-iita:latest
 
-#### 运行步骤
-1、安装jdk11
+docker run -p 8082:8082  -p 8086:8086 -p 8130-8140:8130-8140 iotkits/iot-iita:latest
 
-2、clone代码([核心库](https://gitee.com/open-iita/iot-iita-core),[主项目库](https://gitee.com/open-iita/iotkit-parent),[插件库](https://gitee.com/open-iita/iot-iita-plugins))，在idea中导入项目
+启动后访问 http://localhost:8082/
 
-3、先install核心库，在主项目库的iot-starter模块的Application类上右键运行
-
-4、若出现报错，可能是数据没有初始化完或重复初始化，把项目根目录下.init文件和data/iotkit.xx文件删除后重启
-
-5、插件使用说明见：[插件使用说明](https://iotkit-open-source.gitee.io/document/pages/plugin/howtouse/)
+#### 源码运行步骤
+在线文档:[知识库](https://open-iita.feishu.cn/wiki/Km67wBKNNiFMrMkldCJcxa6vnLe)
 
 在配置好相应的jdk11环境后，推荐使用idea拉取代码，等待项目加载完成以后，先在Terminal里执行mvn clean install，然后在idea的maven操作框上点击下刷新
 ![1](doc/image-20230702173737805.png)
@@ -143,7 +141,7 @@ Vertx event-bus（内置）、RocketMQ，通过扩展模块可接入其它任意
 
 #### 文档
 
-http://iotkit-open-source.gitee.io/document/
+https://open-iita.feishu.cn/wiki/Km67wBKNNiFMrMkldCJcxa6vnLe
 
 
 

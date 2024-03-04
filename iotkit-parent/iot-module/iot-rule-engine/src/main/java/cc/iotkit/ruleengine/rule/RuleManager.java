@@ -128,6 +128,9 @@ public class RuleManager {
     }
 
     public void add(RuleInfo ruleInfo) {
+        if(RuleInfo.STATE_STOPPED.equals(ruleInfo.getState())){
+            return;
+        }
         Rule rule = parseRule(ruleInfo);
         ruleMessageHandler.putRule(rule);
     }
@@ -184,6 +187,13 @@ public class RuleManager {
     private Filter<?> parseFilter(String type, String config) {
         if (DeviceFilter.TYPE.equals(type)) {
             DeviceFilter filter = parse(config, DeviceFilter.class);
+            for (cc.iotkit.ruleengine.filter.DeviceCondition condition : filter.getConditions()) {
+                String dn = "#";
+                if (StringUtils.isNotBlank(filter.getDn())) {
+                    dn = filter.getDn();
+                }
+                condition.setDevice(filter.getPk() + "/" + dn);
+            }
             filter.setDeviceInfoData(deviceInfoData);
             return filter;
         }
@@ -266,7 +276,7 @@ public class RuleManager {
         return null;
     }
 
-    private <T> T parse(String config, Class<T> cls) { //将string转为对象
+    private <T> T parse(String config, Class<T> cls) {
         return JsonUtils.parseObject(config, cls);
     }
 

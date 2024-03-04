@@ -12,7 +12,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655415536032
     },
     "property": {
@@ -42,7 +42,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655415536130
     },
     "property": {
@@ -72,7 +72,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655415536135
     },
     "property": {
@@ -102,7 +102,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416465031
     },
     "property": {
@@ -135,7 +135,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416465035
     },
     "property": {
@@ -164,7 +164,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416465133
     },
     "property": {
@@ -197,7 +197,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416465231
     },
     "property": {
@@ -226,7 +226,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652738672
     },
     "property": {
@@ -255,7 +255,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652738676
     },
     "property": {
@@ -284,7 +284,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652738773
     },
     "property": {
@@ -313,7 +313,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652738872
     },
     "property": {
@@ -342,7 +342,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652738972
     },
     "property": {
@@ -371,7 +371,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652739072
     },
     "property": {
@@ -400,7 +400,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652739076
     },
     "property": {
@@ -429,7 +429,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652739174
     },
     "property": {
@@ -458,7 +458,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652739272
     },
     "property": {
@@ -487,7 +487,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655652739372
     },
     "property": {
@@ -540,7 +540,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839933067
     },
     "property": {
@@ -580,7 +580,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839933167
     },
     "property": {
@@ -603,7 +603,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839933267
     },
     "property": {
@@ -632,7 +632,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839933367
     },
     "property": {
@@ -655,7 +655,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839933376
     },
     "property": {
@@ -684,7 +684,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839933474
     },
     "property": {
@@ -713,7 +713,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839918667
     },
     "property": {
@@ -744,7 +744,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839918676
     },
     "property": {
@@ -775,7 +775,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839918771
     },
     "property": {
@@ -806,7 +806,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839918871
     },
     "property": {
@@ -837,7 +837,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839918967
     },
     "property": {
@@ -862,7 +862,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416485331
     },
     "property": {
@@ -885,7 +885,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416485335
     },
     "property": {
@@ -908,7 +908,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416485433
     },
     "property": {
@@ -931,7 +931,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416485531
     },
     "property": {
@@ -954,7 +954,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655416485631
     },
     "property": {
@@ -977,7 +977,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839919567
     },
     "property": {
@@ -1000,7 +1000,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839919576
     },
     "property": {
@@ -1023,7 +1023,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839919673
     },
     "property": {
@@ -1103,7 +1103,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839926671
     },
     "property": {
@@ -1126,7 +1126,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839926777
     },
     "property": {
@@ -1149,7 +1149,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653839927067
     },
     "property": {
@@ -1172,7 +1172,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653785231385
     },
     "property": {
@@ -1196,7 +1196,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653785231786
     },
     "property": {
@@ -1220,7 +1220,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653785232184
     },
     "property": {
@@ -1244,7 +1244,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653730979070
     },
     "property": {
@@ -1269,7 +1269,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653380321483
     },
     "property": {
@@ -1318,7 +1318,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653380322090,
       "offlineTime": 1652593079579
     },
@@ -1343,7 +1343,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653380319984,
       "offlineTime": 1652593079484
     },
@@ -1368,7 +1368,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653380317469,
       "offlineTime": 1652593079473
     },
@@ -1391,7 +1391,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653380312358,
       "offlineTime": 1652593079381
     },
@@ -1415,7 +1415,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655415536433,
       "offlineTime": 1652669743574
     },
@@ -1530,7 +1530,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655581924548,
       "offlineTime": 1655581807987
     },
@@ -1567,7 +1567,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655581925148,
       "offlineTime": 1655581808150
     },
@@ -1606,7 +1606,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655581925152,
       "offlineTime": 1655581808148
     },
@@ -1645,7 +1645,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655581925157,
       "offlineTime": 1655581808053
     },
@@ -1684,7 +1684,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655581925252,
       "offlineTime": 1655581808052
     },
@@ -1723,7 +1723,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655581925255,
       "offlineTime": 1655581808049
     },
@@ -1762,7 +1762,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1655581925247,
       "offlineTime": 1655581808009
     },
@@ -1850,7 +1850,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653729780071,
       "offlineTime": 1653380472221
     },
@@ -1875,7 +1875,7 @@
       "latitude": "30.604218"
     },
     "state": {
-      "online": true,
+      "online": false,
       "onlineTime": 1653729780174,
       "offlineTime": 1653380471930
     },

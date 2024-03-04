@@ -29,10 +29,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 插件主程序接口服务
@@ -126,7 +126,7 @@ public class PluginMainImpl implements IPluginMain, DeviceService {
                     .build();
             //调用插件设备服务接口
             result = deviceService.serviceInvoke(action);
-            publish(service, result.getCode());
+            publish(service, deviceInfo.getDeviceId(), result.getCode());
         } else if (ThingService.TYPE_PROPERTY.equals(type)) {
             if ("set".equals(identifier)) {
                 if (!(service.getParams() instanceof Map)) {
@@ -143,7 +143,7 @@ public class PluginMainImpl implements IPluginMain, DeviceService {
                         .build();
                 //调用插件设备服务接口
                 result = deviceService.propertySet(action);
-                publish(service, result.getCode());
+                publish(service, deviceInfo.getDeviceId(), result.getCode());
             } else if ("get".equals(identifier)) {
                 //属性获取
                 PropertyGet action = PropertyGet.builder()
@@ -154,7 +154,7 @@ public class PluginMainImpl implements IPluginMain, DeviceService {
                         .build();
                 //调用插件设备服务接口
                 result = deviceService.propertyGet(action);
-                publish(service, result.getCode());
+                publish(service, deviceInfo.getDeviceId(), result.getCode());
             }
         }
 
@@ -163,9 +163,11 @@ public class PluginMainImpl implements IPluginMain, DeviceService {
         }
     }
 
-    private void publish(ThingService<?> service, int code) {
+    private void publish(ThingService<?> service, String deviceId, int code) {
         //产生下发消息作为下行日志保存
         ThingModelMessage message = ThingModelMessage.builder()
+                .id(UUID.randomUUID().toString())
+                .deviceId(deviceId)
                 .mid(service.getMid())
                 .productKey(service.getProductKey())
                 .deviceName(service.getDeviceName())
@@ -173,6 +175,8 @@ public class PluginMainImpl implements IPluginMain, DeviceService {
                 .type(service.getType())
                 .data(service.getParams())
                 .code(code)
+                .occurred(System.currentTimeMillis())
+                .time(System.currentTimeMillis())
                 .build();
 
         producer.publish(Constants.THING_MODEL_MESSAGE_TOPIC, message);

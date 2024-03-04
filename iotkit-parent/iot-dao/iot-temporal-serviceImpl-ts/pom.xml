@@ -6,9 +6,9 @@
     <parent>
         <artifactId>iot-dao</artifactId>
         <groupId>cc.iotkit</groupId>
-        <version>0.5.1-SNAPSHOT</version>
+        <version>0.5.2-SNAPSHOT</version>
     </parent>
-    <version>0.5.1-SNAPSHOT</version>
+    <version>0.5.2-SNAPSHOT</version>
     <artifactId>iot-temporal-serviceImpl-ts</artifactId>
 
     <description>
@@ -79,7 +79,7 @@
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
-            <version>3.14.15</version>Fv
+            <version>3.14.15</version>
         </dependency>
 
         <dependency>

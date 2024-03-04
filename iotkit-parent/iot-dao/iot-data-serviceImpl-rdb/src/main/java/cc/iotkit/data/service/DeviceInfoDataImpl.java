@@ -207,9 +207,15 @@ public class DeviceInfoDataImpl implements IDeviceInfoData, IJPACommData<DeviceI
     @Override
     public Paging<DeviceInfo> findByConditions(String uid, String subUid,
                                                String productKey, String groupId,
-                                               String state, String keyword,
+                                               Boolean online, String keyword,
                                                int page, int size) {
         JPAQuery<TbDeviceInfo> query = jpaQueryFactory.selectFrom(tbDeviceInfo);
+
+        // 根据groupId, 如果groupId存在，则关联查询TbDeviceGroupMapping, 根据groupId,查询对应的devices
+        if (StringUtils.isNotBlank(groupId)) {
+            query.join(tbDeviceGroupMapping).on(tbDeviceGroupMapping.deviceId.eq(tbDeviceInfo.deviceId));
+            query.where(tbDeviceGroupMapping.groupId.eq(groupId));
+        }
 
         if (StringUtils.isNotBlank(uid)) {
             query.where(tbDeviceInfo.uid.eq(uid));
@@ -224,8 +230,8 @@ public class DeviceInfoDataImpl implements IDeviceInfoData, IJPACommData<DeviceI
             query.where(tbDeviceInfo.productKey.eq(productKey));
         }
 
-        if (StringUtils.isNotBlank(state)) {
-            query.where(tbDeviceInfo.state.eq(state));
+        if (online != null) {
+            query.where(tbDeviceInfo.state.eq(online ? "online" : "offline"));
         }
 
         if (StringUtils.isNotBlank(keyword)) {
@@ -378,7 +384,7 @@ public class DeviceInfoDataImpl implements IDeviceInfoData, IJPACommData<DeviceI
 
     @Override
     public List<DeviceInfo> findByIds(Collection<String> ids) {
-        return MapstructUtils.convert(deviceInfoRepository.findAllById(ids),DeviceInfo.class);
+        return MapstructUtils.convert(deviceInfoRepository.findAllById(ids), DeviceInfo.class);
     }
 
     @Override
@@ -434,11 +440,6 @@ public class DeviceInfoDataImpl implements IDeviceInfoData, IJPACommData<DeviceI
     @Override
     public long count() {
         return deviceInfoRepository.count();
-    }
-
-    @Override
-    public List<DeviceInfo> findAll() {
-        return new ArrayList<>();
     }
 
     @Override

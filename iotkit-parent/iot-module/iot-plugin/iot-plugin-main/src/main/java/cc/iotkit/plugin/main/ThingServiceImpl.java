@@ -16,6 +16,8 @@ import cc.iotkit.mq.MqProducer;
 import cc.iotkit.plugin.core.thing.IThingService;
 import cc.iotkit.plugin.core.thing.actions.*;
 import cc.iotkit.plugin.core.thing.actions.up.*;
+import cc.iotkit.plugin.core.thing.model.ThingDevice;
+import cc.iotkit.plugin.core.thing.model.ThingProduct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +56,10 @@ public class ThingServiceImpl implements IThingService {
             log.info("receive plugin:{}, action:{}", pluginId, action);
             String deviceName = action.getDeviceName();
 
-            // 添加设备路由
+            //添加设备路由
             deviceRouter.putRouter(deviceName, new PluginRouter(IPluginMain.MAIN_ID, pluginId));
 
-            DeviceInfo device = getDevice(deviceName);
+            DeviceInfo device = getDeviceInfo(deviceName);
             if (device == null) {
                 log.warn("device:{} is not found.", deviceName);
             }
@@ -66,7 +68,13 @@ public class ThingServiceImpl implements IThingService {
             switch (type) {
                 case REGISTER:
                     // 设备注册
-                    registerDevice(device, (DeviceRegister) action);
+                   // registerDevice(device, (DeviceRegister) action);
+                    //设备注册
+                    registerDevice(device, (DeviceRegister) action, null);
+                    break;
+                case SUB_REGISTER:
+                    //子设备注册
+                    subRegisterDevice(pluginId, device, (SubDeviceRegister) action);
                     break;
                 case STATE_CHANGE:
                     deviceStateChange(device, (DeviceStateChange) action);
@@ -79,7 +87,9 @@ public class ThingServiceImpl implements IThingService {
                                     .type(ThingModelMessage.TYPE_EVENT)
                                     .identifier(eventReport.getName())
                                     .data(eventReport.getParams())
-                                    .build());
+                                    .time(eventReport.getTime())
+                                    .build()
+                    );
                     break;
                 case PROPERTY_REPORT:
                     PropertyReport propertyReport = (PropertyReport) action;
@@ -89,7 +99,10 @@ public class ThingServiceImpl implements IThingService {
                                     .type(ThingModelMessage.TYPE_PROPERTY)
                                     .identifier(ThingModelMessage.ID_PROPERTY_REPORT)
                                     .data(propertyReport.getParams())
-                                    .build());
+                                    .time(propertyReport.getTime())
+                                    .occurred(propertyReport.getTime())
+                                    .build()
+                    );
                     break;
                 case SERVICE_REPLY:
                     ServiceReply serviceReply = (ServiceReply) action;
@@ -101,7 +114,9 @@ public class ThingServiceImpl implements IThingService {
                                     .mid(serviceReply.getReplyId())
                                     .code(serviceReply.getCode())
                                     .data(serviceReply.getParams())
-                                    .build());
+                                    .time(serviceReply.getTime())
+                                    .build()
+                    );
                     break;
 
                 case TOPOLOGY:
@@ -119,17 +134,26 @@ public class ThingServiceImpl implements IThingService {
     }
 
     @Override
-    public Product getProduct(String pk) {
+    public ThingProduct getProduct(String pk) {
         try {
-            return productData.findByProductKey(pk);
+            Product product = productData.findByProductKey(pk);
+            if (product == null) {
+                return null;
+            }
+            return ThingProduct.builder()
+                    .category(product.getCategory())
+                    .productKey(product.getProductKey())
+                    .name(product.getName())
+                    .nodeType(product.getNodeType())
+                    .productSecret(product.getProductSecret())
+                    .build();
         } catch (Throwable e) {
             log.error("get product error", e);
             return null;
         }
     }
 
-    @Override
-    public DeviceInfo getDevice(String dn) {
+    public DeviceInfo getDeviceInfo(String dn) {
         try {
             return deviceInfoData.findByDeviceName(dn);
         } catch (Throwable e) {
@@ -139,19 +163,34 @@ public class ThingServiceImpl implements IThingService {
     }
 
     @Override
+    public ThingDevice getDevice(String dn) {
+        DeviceInfo deviceInfo = getDeviceInfo(dn);
+        if (deviceInfo == null) {
+            return null;
+        }
+        return ThingDevice.builder()
+                .deviceId(deviceInfo.getDeviceId())
+                .deviceName(deviceInfo.getDeviceName())
+                .model(deviceInfo.getModel())
+                .productKey(deviceInfo.getProductKey())
+                .secret(deviceInfo.getSecret())
+                .build();
+    }
+
+    @Override
     public Map<String, ?> getProperty(String deviceName) {
-        DeviceInfo device = getDevice(deviceName);
+        DeviceInfo device = getDeviceInfo(deviceName);
         if (device == null) {
             return new HashMap<>(0);
         }
         return device.getProperty();
     }
 
-    private void registerDevice(DeviceInfo device, DeviceRegister register) {
+    private String registerDevice(DeviceInfo device, DeviceRegister register, String parentId) {
         String productKey = register.getProductKey();
-        // 指定了pk需验证
+        //指定了pk需验证
         if (StringUtils.isNotBlank(productKey)) {
-            Product product = getProduct(productKey);
+            ThingProduct product = getProduct(productKey);
             if (product == null) {
                 throw new BizException(ErrCode.PRODUCT_NOT_FOUND);
             }
@@ -159,28 +198,66 @@ public class ThingServiceImpl implements IThingService {
 
         if (device != null) {
             log.info("device already registered");
+            if (parentId != null) {
+                device.setParentId(parentId);
+                deviceInfoData.save(device);
+            }
+            return device.getDeviceId();
         } else {
-            // 不存在,注册新设备
-            device = new DeviceInfo();
-            device.setId(DeviceUtil.newDeviceId(register.getDeviceName()));
-            device.setDeviceId(device.getId());
-            device.setProductKey(productKey);
-            device.setDeviceName(register.getDeviceName());
-            device.setModel(register.getModel());
-            device.setSecret(RandomStringUtils.randomAlphabetic(16));
-            // 默认离线
-            device.setState(new DeviceInfo.State(false, null, null));
-            device.setCreateAt(System.currentTimeMillis());
-            deviceInfoData.save(device);
+            //不存在,注册新设备
+            DeviceInfo deviceInfo = new DeviceInfo();
+            deviceInfo.setId(DeviceUtil.newDeviceId(register.getDeviceName()));
+            deviceInfo.setDeviceId(deviceInfo.getId());
+            deviceInfo.setProductKey(productKey);
+            deviceInfo.setDeviceName(register.getDeviceName());
+            deviceInfo.setModel(register.getModel());
+            deviceInfo.setParentId(parentId);
+            deviceInfo.setSecret(RandomStringUtils.randomAlphabetic(16));
+            //默认离线
+            deviceInfo.setState(new DeviceInfo.State(false, null, null));
+            deviceInfo.setCreateAt(System.currentTimeMillis());
+            deviceInfoData.save(deviceInfo);
 
             log.info("device registered:{}", JsonUtils.toJsonString(device));
             publishMsg(
-                    device,
+                    deviceInfo,
                     register,
                     ThingModelMessage.builder()
                             .type(ThingModelMessage.TYPE_LIFETIME)
                             .identifier("register")
-                            .build());
+                            .time(System.currentTimeMillis())
+                            .build()
+            );
+            return deviceInfo.getDeviceId();
+        }
+    }
+
+    private void subRegisterDevice(String pluginId, DeviceInfo parent, SubDeviceRegister register) {
+        //先注册父设备
+        String parentId = registerDevice(parent,
+                DeviceRegister.builder()
+                        .productKey(register.getProductKey())
+                        .deviceName(register.getDeviceName())
+                        .model(register.getModel())
+                        .version(register.getVersion())
+                        .build(), null);
+
+        for (DeviceRegister sub : register.getSubs()) {
+            String productKey = sub.getProductKey();
+            String deviceName = sub.getDeviceName();
+            DeviceInfo subDevice = getDeviceInfo(sub.getDeviceName());
+            //添加设备路由
+            deviceRouter.putRouter(deviceName, new PluginRouter(IPluginMain.MAIN_ID, pluginId));
+            //注册子设备
+            registerDevice(subDevice,
+                    DeviceRegister.builder()
+                            .productKey(productKey)
+                            .deviceName(deviceName)
+                            .model(sub.getModel())
+                            .version(sub.getVersion())
+                            .build()
+                    , parentId
+            );
         }
     }
 
@@ -200,13 +277,15 @@ public class ThingServiceImpl implements IThingService {
                 ThingModelMessage.builder()
                         .type(ThingModelMessage.TYPE_STATE)
                         .identifier(action.getState().getState())
-                        .build());
+                        .time(System.currentTimeMillis())
+                        .build()
+        );
     }
 
     private void deviceTopologyUpdate(DeviceInfo device, DeviceTopology topology) {
         // 设备拓扑关系更新
         for (String deviceName : topology.getSubDevices()) {
-            DeviceInfo subDevice = getDevice(deviceName);
+            DeviceInfo subDevice = getDeviceInfo(deviceName);
             subDevice.setParentId(device.getDeviceId());
             deviceInfoData.save(subDevice);
         }

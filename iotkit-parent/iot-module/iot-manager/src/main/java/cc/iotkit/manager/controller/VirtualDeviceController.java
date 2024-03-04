@@ -15,6 +15,7 @@ import cc.iotkit.common.api.Request;
 import cc.iotkit.common.enums.ErrCode;
 import cc.iotkit.common.exception.BizException;
 import cc.iotkit.common.utils.ReflectUtil;
+import cc.iotkit.common.validate.QueryGroup;
 import cc.iotkit.data.manager.IVirtualDeviceData;
 import cc.iotkit.manager.dto.bo.ChangeStateBo;
 import cc.iotkit.manager.dto.bo.device.DeviceLogQueryBo;
@@ -56,7 +57,7 @@ public class VirtualDeviceController {
     @ApiOperation("获取虚拟设备列表")
     @SaCheckPermission("iot:virtualDevice:query")
     @PostMapping("/list")
-    public Paging<VirtualDevice> getDevices(PageRequest<VirtualDevice> pageRequest) {
+    public Paging<VirtualDevice> getDevices(@Validated(QueryGroup.class)@RequestBody PageRequest<VirtualDevice> pageRequest) {
         return virtualDeviceData.findAll(pageRequest);
     }
 
@@ -66,8 +67,8 @@ public class VirtualDeviceController {
     @ApiOperation("添加虚拟设备")
     @SaCheckPermission("iot:virtualDevice:add")
     @PostMapping("/add")
-    public void add(@Validated @RequestBody VirtualDevice virtualDevice) {
-        virtualDeviceData.save(virtualDevice);
+    public void add(@Validated @RequestBody Request<VirtualDevice> bo) {
+        virtualDeviceData.save(bo.getData());
     }
 
     /**
@@ -81,6 +82,9 @@ public class VirtualDeviceController {
         VirtualDevice oldData = checkOwner(virtualDevice.getId());
         ReflectUtil.copyNoNulls(virtualDevice, oldData,
                 "name", "productKey", "type", "trigger", "triggerExpression");
+        if (VirtualDevice.STATE_RUNNING.equals(virtualDevice.getState())) {
+            virtualManager.remove(oldData);
+        }
         virtualDevice.setState(VirtualDevice.STATE_STOPPED);
         virtualDeviceData.save(virtualDevice);
     }
