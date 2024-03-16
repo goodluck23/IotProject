@@ -11,51 +11,7 @@ spring:
 
   #注： 切换数据库时需要将项目根目录中的.init文件删除再重启
   # <<=======内置H2数据库连接设置开始==========
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    # 动态数据源文档 https://www.kancloud.cn/tracy5546/dynamic-datasource/content
-    dynamic:
-      hikari:
-        connection-timeout: 5000
-        idle-timeout: 30000 # 经过idle-timeout时间如果连接还处于空闲状态, 该连接会被回收
-        min-idle: 5 # 池中维护的最小空闲连接数, 默认为 10 个
-        max-pool-size: 16 # 池中最大连接数, 包括闲置和使用中的连接, 默认为 10 个
-        max-lifetime: 60000 # 如果一个连接超过了时长，且没有被使用, 连接会被回收
-        is-auto-commit: true
-      primary: master #设置默认的数据源或者数据源组,默认值即为master
-      strict: true #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
-      datasource:
-        # 主库数据源
-        master:
-          type: ${spring.datasource.type}
-          driverClassName: org.h2.Driver
-          # jdbc 所有参数配置参考 https://lionli.blog.csdn.net/article/details/122018562
-          # rewriteBatchedStatements=true 批处理优化 大幅提升批量插入更新删除性能(对数据库有性能损耗 使用批量操作应考虑性能问题)
-          url: jdbc:h2:./data/iotkit;MODE=MySQL
-          username: sa
-          password: 123456
-
-    # 内置h2 web console设置
-    platform: h2
-  h2:
-    console:
-      enabled: true
-      path: /h2
-      settings:
-        web-allow-others: true
-  #=======内置H2数据库连接设置结束==========>>
-
-  # <<==========mysql配置开始==============
 #  jpa:
-#    database: MySQL
-#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 #    show-sql: false
 #    hibernate:
 #      ddl-auto: update
@@ -64,6 +20,7 @@ spring:
 #        format_sql: true
 #  datasource:
 #    type: com.zaxxer.hikari.HikariDataSource
+#    # 动态数据源文档 https://www.kancloud.cn/tracy5546/dynamic-datasource/content
 #    dynamic:
 #      hikari:
 #        connection-timeout: 5000
@@ -78,34 +35,77 @@ spring:
 #        # 主库数据源
 #        master:
 #          type: ${spring.datasource.type}
-#          driverClassName: com.mysql.cj.jdbc.Driver
+#          driverClassName: org.h2.Driver
 #          # jdbc 所有参数配置参考 https://lionli.blog.csdn.net/article/details/122018562
-#          url: jdbc:mysql://127.0.0.1:3306/iotkit?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
-#          username: root
+#          # rewriteBatchedStatements=true 批处理优化 大幅提升批量插入更新删除性能(对数据库有性能损耗 使用批量操作应考虑性能问题)
+#          url: jdbc:h2:./data/iotkit;MODE=MySQL
+#          username: sa
 #          password: 123456
+#
+#    # 内置h2 web console设置
+#    platform: h2
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2
+#      settings:
+#        web-allow-others: true
+  #=======内置H2数据库连接设置结束==========>>
+
+  # <<==========mysql配置开始==============
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    dynamic:
+      hikari:
+        connection-timeout: 5000
+        idle-timeout: 30000 # 经过idle-timeout时间如果连接还处于空闲状态, 该连接会被回收
+        min-idle: 5 # 池中维护的最小空闲连接数, 默认为 10 个
+        max-pool-size: 16 # 池中最大连接数, 包括闲置和使用中的连接, 默认为 10 个
+        max-lifetime: 60000 # 如果一个连接超过了时长，且没有被使用, 连接会被回收
+        is-auto-commit: true
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: true #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        # 主库数据源
+        master:
+          type: ${spring.datasource.type}
+          driverClassName: com.mysql.cj.jdbc.Driver
+          # jdbc 所有参数配置参考 https://lionli.blog.csdn.net/article/details/122018562
+          url: jdbc:mysql://192.168.0.129:3306/iotkit?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+          username: root
+          password: root
   # ============mysql配置结束============>>
 
   #<<================es时序数据配置开始===============
-  elasticsearch:
-    embedded:
-      # 是否启用内部es
-      enabled: true
-      port: 9200
-    rest:
-      #使用内置es的配置
-      #uris: http://elasticsearch:9200
-      uris: http://127.0.0.1:9200
-      username:
-      password:
-      connection-timeout: 10s
+#  elasticsearch:
+#    embedded:
+#      # 是否启用内部es
+#      enabled: true
+#      port: 9200
+#    rest:
+#      #使用内置es的配置
+#      #uris: http://elasticsearch:9200
+#      uris: http://127.0.0.1:9200
+#      username:
+#      password:
+#      connection-timeout: 10s
   #================es时序数据配置结束===============>>
 
   #<<===========tdengine时序数据库配置开始============
-#  td-datasource:
-#    url: jdbc:TAOS-RS://127.0.0.1:6041/iotkit?timezone=UTC-8&charset=UTF-8&locale=en_US.UTF-8
-#    username: root
-#    password: taosdata
-#    driverClassName: com.taosdata.jdbc.rs.RestfulDriver
+  td-datasource:
+    url: jdbc:TAOS-RS://192.168.0.129:6041/iotkit?timezone=UTC-8&charset=UTF-8&locale=en_US.UTF-8
+    username: root
+    password: taosdata
+    driverClassName: com.taosdata.jdbc.rs.RestfulDriver
   #===========tdengine时序数据库配置开始============>>
 
 
