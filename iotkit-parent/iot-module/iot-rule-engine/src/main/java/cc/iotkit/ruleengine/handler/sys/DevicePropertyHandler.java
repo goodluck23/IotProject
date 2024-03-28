@@ -57,7 +57,7 @@ public class DevicePropertyHandler implements DeviceMessageHandler {
             return;
         }
 
-        Map<String, Object> properties = (Map<String, Object>) msg.getData();
+        Map<String, Object> properties = (Map<String, Object>) msg.getData();//Object 转Map;
         String deviceId = msg.getDeviceId();
         DeviceInfo deviceInfo = deviceInfoData.findByDeviceId(deviceId);
         if (deviceInfo == null) {
@@ -73,7 +73,7 @@ public class DevicePropertyHandler implements DeviceMessageHandler {
         //物模型属性
         Map<String, ThingModel.DataType> thingModelProperties = thingModel.getModel().
                 getProperties().stream().collect(Collectors.toMap(
-                ThingModel.Property::getIdentifier, ThingModel.Property::getDataType));
+                ThingModel.Property::getIdentifier, ThingModel.Property::getDataType));//Map 拼接
 
         Map<String, DevicePropertyCache> addProperties = new HashMap<>();
         Long occurred = msg.getOccurred();
